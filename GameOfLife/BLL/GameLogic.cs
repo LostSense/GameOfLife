@@ -43,6 +43,7 @@ namespace GameOfLife.BLL
 
         public static void CheckCells()
         {
+
             for (int i = 0; i < Cells.GetLength(0); i++)
             {
                 for (int c = 0; c < Cells.GetLength(1); c++)
@@ -67,22 +68,37 @@ namespace GameOfLife.BLL
         private static void CheckCell(int x, int y)
         {
             int life = AmountOfLife(x, y);
-            if (life > 3)
+            switch (life)
             {
-                Cells[x, y].NextAlive = false;
+                case 3:
+                    {
+                        Cells[x, y].NextAlive = true;
+                    } break;
+                case 2:
+                    {
+                        Cells[x, y].NextAlive = Cells[x, y].Alive;
+                    } break;
+                default:
+                    {
+                        Cells[x, y].NextAlive = false;
+                    } break;
             }
-            else if (life == 3)
-            {
-                Cells[x, y].NextAlive = true;
-            }
-            else if (life == 2 && Cells[x, y].Alive)
-            {
-                Cells[x, y].NextAlive = true;
-            }
-            else
-            {
-                Cells[x, y].NextAlive = false;
-            }
+            //if (life > 3)
+            //{
+            //    Cells[x, y].NextAlive = false;
+            //}
+            //else if (life == 3)
+            //{
+            //    Cells[x, y].NextAlive = true;
+            //}
+            //else if (life == 2 && Cells[x, y].Alive)
+            //{
+            //    Cells[x, y].NextAlive = true;
+            //}
+            //else
+            //{
+            //    Cells[x, y].NextAlive = false;
+            //}
         }
 
         private static int AmountOfLife(int x, int y)
