@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GameOfLife.BLL;
+using System.Timers;
 
 namespace GameOfLife
 {
@@ -92,18 +93,29 @@ namespace GameOfLife
 
         private void GameWork()
         {
-            Action<int, int> RedRect = new Action<int,int>(DrawRedRect);
+            #region Actions
+            Action<int, int> RedRect = new Action<int, int>(DrawRedRect);
             Action<int, int> whiteRect = new Action<int, int>(DrawWhiteRect);
             Action refreshPicBox = new Action(this.pictureBox1.Refresh);
             Action addG = new Action(AddGeneration);
+            Action<long> AddTimeSpeed = new Action<long>(ChangeTimeSpeed); 
+            #endregion
+            System.Diagnostics.Stopwatch sw;
+            Timer t = new Timer(2000);
+            t.AutoReset = true;
+            t.Elapsed += t_Elapsed;
+            t.Start();
             do
             {
+                sw = new System.Diagnostics.Stopwatch();
+                sw.Start();
                 GameLogic.CheckCells();
+                #region For cicle
                 for (int i = 0; i < GameLogic.Cells.GetLength(0); i++)
                 {
                     for (int c = 0; c < GameLogic.Cells.GetLength(1); c++)
                     {
-                        if (!(GameLogic.Cells[i,c].Alive && GameLogic.Cells[i, c].NextAlive) || !(!GameLogic.Cells[i,c].Alive && !GameLogic.Cells[i, c].NextAlive))
+                        if (!(GameLogic.Cells[i, c].Alive && GameLogic.Cells[i, c].NextAlive) || !(!GameLogic.Cells[i, c].Alive && !GameLogic.Cells[i, c].NextAlive))
                         {
                             if (GameLogic.Cells[i, c].NextAlive)
                             {
@@ -113,17 +125,30 @@ namespace GameOfLife
                             else
                             {
                                 this.Invoke(whiteRect, i * 10, c * 10);
-                            } 
+                            }
                         }
                     }
-                }
+                } 
+                #endregion
                 this.Invoke(refreshPicBox);
                 Generation++;
                 this.Invoke(addG);
                 GameLogic.UpdateCellsStatus();
-                
                 System.Threading.Thread.Sleep(speedOfLifeChange);
+                sw.Stop();
+                this.Invoke(AddTimeSpeed,sw.ElapsedMilliseconds);
             } while (gameWork);
+            t.Stop();
+        }
+
+        void t_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            int SpeedOfGame;
+            bool check = int.TryParse(textBoxOfSpeed.Text, out SpeedOfGame);
+            if (check)
+            {
+                speedOfLifeChange = SpeedOfGame;
+            }
         }
     }
 }

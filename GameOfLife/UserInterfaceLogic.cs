@@ -90,5 +90,10 @@ namespace GameOfLife
         {
             graphics.FillRectangle(new System.Drawing.SolidBrush(Color.White), new Rectangle(x + 1, y + 1, 9, 9));
         }
+
+        public void ChangeTimeSpeed(long speed)
+        {
+            this.labelTimeSpeed.Text = speed.ToString();
+        }
     }
 }
