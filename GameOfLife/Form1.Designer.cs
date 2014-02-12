@@ -39,6 +39,10 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.labelGeneration = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.labelTimeSpeed = new System.Windows.Forms.Label();
+            this.textBoxOfSpeed = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,11 +144,49 @@
             this.labelGeneration.TabIndex = 10;
             this.labelGeneration.Text = "0";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(279, 46);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Speed:";
+            // 
+            // labelTimeSpeed
+            // 
+            this.labelTimeSpeed.AutoSize = true;
+            this.labelTimeSpeed.Location = new System.Drawing.Point(348, 46);
+            this.labelTimeSpeed.Name = "labelTimeSpeed";
+            this.labelTimeSpeed.Size = new System.Drawing.Size(13, 13);
+            this.labelTimeSpeed.TabIndex = 12;
+            this.labelTimeSpeed.Text = "0";
+            // 
+            // textBoxOfSpeed
+            // 
+            this.textBoxOfSpeed.Location = new System.Drawing.Point(206, 74);
+            this.textBoxOfSpeed.Name = "textBoxOfSpeed";
+            this.textBoxOfSpeed.Size = new System.Drawing.Size(66, 20);
+            this.textBoxOfSpeed.TabIndex = 15;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(120, 80);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 13);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Delay of speed:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 262);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBoxOfSpeed);
+            this.Controls.Add(this.labelTimeSpeed);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.labelGeneration);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.progressBar1);
@@ -157,7 +199,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Game Of Life";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -177,6 +219,10 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelGeneration;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelTimeSpeed;
+        private System.Windows.Forms.TextBox textBoxOfSpeed;
+        private System.Windows.Forms.Label label3;
     }
 }
 
