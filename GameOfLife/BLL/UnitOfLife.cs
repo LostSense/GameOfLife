@@ -16,4 +16,15 @@ namespace GameOfLife.BLL
             Alive = false;
         }
     }
+
+    public class UnitOfLife2
+    {
+        public byte Alive { get; set; }
+        public byte NextAlive { get; set; }
+
+        public UnitOfLife2()
+        {
+            Alive = 0;
+        }
+    }
 }
